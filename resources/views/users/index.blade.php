@@ -67,17 +67,17 @@
                             {{ $user->created_at->format('d/m/Y') }}
                         </small>
                     </td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning" title="Edit">
+                   <td>
+                        <div class="action-buttons">
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn-futuristic btn-edit" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @if($user->id != auth()->id())
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline" 
-                                  onsubmit="return confirm('Hapus user {{ $user->name }}?')">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;" 
+                                onsubmit="return confirm('Hapus user {{ $user->name }}?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" title="Hapus">
+                                <button type="submit" class="btn-futuristic btn-delete" title="Hapus">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>

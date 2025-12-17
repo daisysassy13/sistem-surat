@@ -34,20 +34,26 @@ class SuratKeluar extends Model
 
     // Generate nomor surat otomatis
     public static function generateNomorSurat()
-    {
-        $year = date('Y');
-        $month = self::getRomanMonth(date('n'));
-        
-        // Ambil nomor terakhir tahun ini
-        $lastSurat = self::whereYear('created_at', $year)
-            ->orderBy('id', 'desc')
-            ->first();
-        
-        $urutan = $lastSurat ? (int)substr($lastSurat->nomor_surat, 0, 3) + 1 : 1;
-        
-        return sprintf('%03d/SK/%s/%s', $urutan, $month, $year);
+{
+    $year = date('Y');
+    $month = self::getRomanMonth(date('n'));
+    
+    // Ambil nomor terbesar dari tahun & bulan ini (termasuk yang diarsip)
+    $lastNomor = self::withTrashed()
+        ->whereYear('created_at', $year)
+        ->whereMonth('created_at', date('n'))
+        ->where('nomor_surat', 'like', '%/SK/' . $month . '/' . $year)
+        ->max('nomor_surat');
+    
+    if ($lastNomor) {
+        preg_match('/^(\d+)\//', $lastNomor, $matches);
+        $urutan = isset($matches[1]) ? (int)$matches[1] + 1 : 1;
+    } else {
+        $urutan = 1;
     }
-
+    
+    return sprintf('%03d/SK/%s/%s', $urutan, $month, $year);
+}
     // Konversi bulan ke romawi
     private static function getRomanMonth($month)
     {

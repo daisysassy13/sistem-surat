@@ -35,20 +35,28 @@ class SuratMasuk extends Model
     }
 
     // Generate nomor agenda otomatis
-    public static function generateNomorAgenda()
-    {
-        $year = date('Y');
-        $month = self::getRomanMonth(date('n'));
-        
-        // Ambil nomor terakhir tahun ini
-        $lastSurat = self::whereYear('created_at', $year)
-            ->orderBy('id', 'desc')
-            ->first();
-        
-        $urutan = $lastSurat ? (int)substr($lastSurat->nomor_agenda, 0, 3) + 1 : 1;
-        
-        return sprintf('%03d/SM/%s/%s', $urutan, $month, $year);
+   public static function generateNomorAgenda()
+{
+    $year = date('Y');
+    $month = self::getRomanMonth(date('n'));
+    
+    // Ambil nomor terbesar dari tahun & bulan ini (termasuk yang diarsip)
+    $lastNomor = self::withTrashed()
+        ->whereYear('created_at', $year)
+        ->whereMonth('created_at', date('n'))
+        ->where('nomor_agenda', 'like', '%/SM/' . $month . '/' . $year)
+        ->max('nomor_agenda');
+    
+    if ($lastNomor) {
+        // Extract angka dari format: 013/SM/XI/2025
+        preg_match('/^(\d+)\//', $lastNomor, $matches);
+        $urutan = isset($matches[1]) ? (int)$matches[1] + 1 : 1;
+    } else {
+        $urutan = 1;
     }
+    
+    return sprintf('%03d/SM/%s/%s', $urutan, $month, $year);
+}
 
     // Konversi bulan ke romawi
     private static function getRomanMonth($month)

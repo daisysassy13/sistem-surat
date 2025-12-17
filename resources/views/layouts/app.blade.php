@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <!-- Futuristic Buttons CSS -->
+    <link rel="stylesheet" href="{{ asset('css/futuristic-buttons.css') }}">
+        <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- CountUp.js untuk animasi angka -->
+    <script src="https://cdn.jsdelivr.net/npm/countup@1.8.2/dist/countUp.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     
     <style>
         :root {
@@ -19,7 +32,7 @@
             --secondary-blue: #34495e;
             --light-blue: #ecf0f1;
             --accent-blue: #3498db;
-            --hover-blue: #2980b9;
+            --hover-blue: #071016ff;
         }
 
         body {
@@ -219,6 +232,247 @@
             border-color: var(--accent-blue);
             box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
         }
+
+        /* ============================================
+          DATATABLES CUSTOM STYLING
+        ============================================ */
+
+        /* Container Show Entries */
+        .dataTables_length {
+            margin-bottom: 1.5rem;
+        }
+
+        .dataTables_length label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+            margin-bottom: 0;
+        }
+
+        /* Dropdown Select */
+        .dataTables_length select {
+            min-width: 80px !important;
+            padding: 0.5rem 2.5rem 0.5rem 1rem !important;
+            border: 2px solid #e3e3e0 !important;
+            border-radius: 10px !important;
+            background-color: white !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232c3e50' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 0.75rem center !important;
+            background-size: 12px !important;
+            font-weight: 600 !important;
+            color: var(--primary-blue) !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+        }
+
+        .dataTables_length select:hover {
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .dataTables_length select:focus {
+            outline: none !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15) !important;
+        }
+
+        /* Search Box */
+        .dataTables_filter {
+            margin-bottom: 1.5rem;
+        }
+
+        .dataTables_filter label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+            margin-bottom: 0;
+        }
+
+        .dataTables_filter input {
+            min-width: 250px !important;
+            padding: 0.5rem 1rem !important;
+            border: 2px solid #e3e3e0 !important;
+            border-radius: 10px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .dataTables_filter input:hover {
+            border-color: var(--accent-blue) !important;
+        }
+
+        .dataTables_filter input:focus {
+            outline: none !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15) !important;
+        }
+
+        /* Wrapper untuk Show Entries dan Search */
+        .dataTables_wrapper .row:first-child {
+            margin-bottom: 1rem;
+        }
+
+        /* Info text (showing 1 to 10...) */
+        .dataTables_info {
+            font-weight: 500;
+            color: #706f6c;
+            padding: 0.75rem 0;
+        }
+
+        /* Pagination */
+        .dataTables_wrapper .dataTables_paginate {
+            padding-top: 1rem;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.5rem 0.75rem !important;
+            margin: 0 0.25rem !important;
+            border-radius: 8px !important;
+            border: 2px solid #e3e3e0 !important;
+            background: white !important;
+            color: var(--primary-blue) !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: var(--accent-blue) !important;
+            border-color: var(--accent-blue) !important;
+            color: white !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3) !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: var(--accent-blue) !important;
+            border-color: var(--accent-blue) !important;
+            color: white !important;
+            font-weight: 600 !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+            opacity: 0.4 !important;
+            cursor: not-allowed !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dataTables_length select {
+                min-width: 70px !important;
+            }
+            
+            .dataTables_filter input {
+                min-width: 100% !important;
+            }
+            
+            .dataTables_length label,
+            .dataTables_filter label {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* ============================================
+        DASHBOARD ANALYTICS ANIMATIONS
+        ============================================ */
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Activity Timeline */
+        .activity-timeline {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-item:hover {
+            background-color: #f8f9fa;
+            padding-left: 0.5rem;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+            padding-right: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        /* Stat Card Hover Effect */
+        .stat-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15) !important;
+        }
+
+        /* Custom Scrollbar for Activity */
+        .activity-timeline::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .activity-timeline::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .activity-timeline::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 10px;
+        }
+
+        .activity-timeline::-webkit-scrollbar-thumb:hover {
+            background: var(--hover-blue);
+        }
+
     </style>
 </head>
 <body>
@@ -328,13 +582,6 @@
     @yield('content')
     @endauth
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     
     <script>
         // Initialize DataTables
@@ -350,5 +597,7 @@
     </script>
 
     @stack('scripts')
+
+
 </body>
 </html>

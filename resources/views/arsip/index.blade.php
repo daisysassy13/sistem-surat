@@ -55,21 +55,21 @@
                                 </small>
                             </td>
                             <td>
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ asset('storage/' . $surat->file_surat) }}" class="btn btn-info" target="_blank" title="Lihat File">
+                                <div class="action-buttons">
+                                    <a href="{{ asset('storage/' . $surat->file_surat) }}" class="btn-futuristic btn-view" target="_blank" title="Lihat File">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <form action="{{ route('arsip.surat-masuk.restore', $surat->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('arsip.surat-masuk.restore', $surat->id) }}" method="POST" style="display:inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" title="Restore" onclick="return confirm('Restore surat ini?')">
+                                        <button type="submit" class="btn-futuristic btn-edit" title="Restore" onclick="return confirm('Restore surat ini?')">
                                             <i class="bi bi-arrow-counterclockwise"></i>
                                         </button>
                                     </form>
                                     @if(auth()->user()->role == 'admin')
-                                    <form action="{{ route('arsip.surat-masuk.force-delete', $surat->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('arsip.surat-masuk.force-delete', $surat->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" title="Hapus Permanen" onclick="return confirm('HAPUS PERMANEN? Data tidak bisa dikembalikan!')">
+                                        <button type="submit" class="btn-futuristic btn-delete" title="Hapus Permanen" onclick="return confirm('HAPUS PERMANEN? Data tidak bisa dikembalikan!')">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
@@ -119,21 +119,21 @@
                                 </small>
                             </td>
                             <td>
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ asset('storage/' . $surat->file_surat) }}" class="btn btn-info" target="_blank" title="Lihat File">
+                                <div class="action-buttons">
+                                    <a href="{{ asset('storage/' . $surat->file_surat) }}" class="btn-futuristic btn-view" target="_blank" title="Lihat File">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <form action="{{ route('arsip.surat-keluar.restore', $surat->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('arsip.surat-keluar.restore', $surat->id) }}" method="POST" style="display:inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" title="Restore" onclick="return confirm('Restore surat ini?')">
+                                        <button type="submit" class="btn-futuristic btn-edit" title="Restore" onclick="return confirm('Restore surat ini?')">
                                             <i class="bi bi-arrow-counterclockwise"></i>
                                         </button>
                                     </form>
                                     @if(auth()->user()->role == 'admin')
-                                    <form action="{{ route('arsip.surat-keluar.force-delete', $surat->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('arsip.surat-keluar.force-delete', $surat->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" title="Hapus Permanen" onclick="return confirm('HAPUS PERMANEN? Data tidak bisa dikembalikan!')">
+                                        <button type="submit" class="btn-futuristic btn-delete" title="Hapus Permanen" onclick="return confirm('HAPUS PERMANEN? Data tidak bisa dikembalikan!')">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>

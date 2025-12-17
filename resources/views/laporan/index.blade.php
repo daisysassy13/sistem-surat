@@ -46,7 +46,7 @@
     <!-- Laporan Surat Keluar -->
     <div class="col-lg-6">
         <div class="card shadow-sm border-0">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-primary text-white">
                 <h5 class="mb-0"><i class="bi bi-send-fill"></i> Laporan Surat Keluar</h5>
             </div>
             <div class="card-body p-4">

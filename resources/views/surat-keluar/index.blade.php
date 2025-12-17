@@ -39,17 +39,17 @@
                         </small>
                     </td>
                     <td>
-                        <div class="btn-group btn-group-sm">
-                            <a href="{{ route('surat-keluar.show', $surat->id) }}" class="btn btn-info" title="Detail">
+                        <div class="action-buttons">
+                            <a href="{{ route('surat-keluar.show', $surat->id) }}" class="btn-futuristic btn-view" title="Detail">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('surat-keluar.edit', $surat->id) }}" class="btn btn-warning" title="Edit">
+                            <a href="{{ route('surat-keluar.edit', $surat->id) }}" class="btn-futuristic btn-edit" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form action="{{ route('surat-keluar.destroy', $surat->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Arsipkan surat ini?')">
+                            <form action="{{ route('surat-keluar.destroy', $surat->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Arsipkan surat ini?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" title="Arsipkan">
+                                <button type="submit" class="btn-futuristic btn-delete" title="Arsipkan">
                                     <i class="bi bi-archive"></i>
                                 </button>
                             </form>
